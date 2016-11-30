@@ -15,13 +15,10 @@
         <link href="${pageContext.request.contextPath}/resources/style/index_style.css" rel="stylesheet" type="text/css"/>
     </head>
     <body>
-         <body>
-       <script language="JavaScript" type="text/javascript">
-           alert("Logueado con exito");
-</script>
+    
     <header class="header">
-    <div>
-      <img class="img-responsive" src="${pageContext.request.contextPath}/resources/img/cabecera1.jpg"></div>
+    <div class="header" style="height: 150px; width: 100%; background:#61859F; text-align: center; border-bottom: 2px solid #D6DBDF;">
+		<img style="height:100%;" src="${pageContext.request.contextPath}/resources/img/fisi-unmsm.bmp"/>
     </div>
     </header>
     <section class="section-inx">
@@ -29,7 +26,7 @@
       <div class="aside">
         <ul class="nav nav_aside">
           <li>
-            <a href="home.htm">
+            <a href="http://sistemas.unmsm.edu.pe/">
               <div class="barra"></div>
               <p class="menu">Regresar a pagina principal</p>
             </a>
@@ -57,7 +54,7 @@
       <div class="article">
         <center><h2>Usuarios encontrados</h2></center>
         <p>
-            <a href="<c:url value="add.htm" />" class="btn btn-success"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Agregar</a>
+            <a href="<c:url value="add.htm" />" class="btn btn-default" style="background: #DBA901"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Agregar</a>
         </p>
         <div id="scroll1">
             <table class="table table-boredered table-striped table-hover">
@@ -90,22 +87,33 @@
         <section>
           <h4>Cargar data de alumno</h4>
           <form method="post" action="accion.php" enctype="multipart/form-data">
-          <input name="imagen" type="file" />
+              <div class="row">
+                <div class="col-md-4">
+                    <input name="imagen" type="file" />
+                </div>
+                  <div class="col-md-8">
+                      <a type="button" class="btn btn-default" style="background: #DBA901" href="Excel.htm"><span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>IMPORTAR</a> 
+                  </div>
+              </div>            
           </form>
         </section>
-          <div class="form-group">
-                  <div class="col-xs-12">
-                      <a type="button" class="btn btn-send" href="Excel.htm">IMPORTAR</a> 
-                  </div>
-                </div>
       </div>
     </div>
     </section>
-    <footer>
-    <div>
-      <img class="img-responsive" src="${pageContext.request.contextPath}/resources/img/footer.png"></div>
-    </div>
-    </footer>
+            <!-- FOOTER-->
+    <div class="copyrights" style="background-color: #2d2d2d; height: 100px; text-align: center; border-bottom: 2px solid #D6DBDF;">
+	<p style="color: white; font-weight: bold;">Facultad de Ingenieria de Sistemas e Informatica -UNMSM | Pasarela de Pagos <a href="http://sistemas.unmsm.edu.pe/" target="_blank">FISI</a> </p>
+	<div class="container" style="color: white ">
+        <div class="row">
+            	
+        </div>
+        </div>
+        <div class="footer-copyright">
+        <div class="container" style="color: white ">
+         © 2016 Copyright Text
+        </div>
+        </div>
+    </div>	
         
     </body>
 </html>

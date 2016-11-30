@@ -22,7 +22,7 @@ nav{
 	overflow: hidden;
 }
 .nav_aside li + li{
-  border-top: 1px solid #949494;
+  border-top: 1px solid yellow;
 }
 .nav_aside li a{
   padding: 10px 15px 10px 10px;

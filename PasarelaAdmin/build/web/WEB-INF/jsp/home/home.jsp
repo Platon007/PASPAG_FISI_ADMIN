@@ -1,7 +1,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
-
+<html>
     <head>
         <title>PasarelaAdmin</title>
         <meta charset="utf-8">
@@ -41,17 +41,17 @@
         </script>
     </head> 
 
-    
+    <body>
     <h1>Registro De Login</h1>
     <form action='login.htm' method='POST' onsubmit= "return comprobar()" > 
-        
+     
     <div class="bg-log"></div>  
     <div class="login-table">
       <div class="login-cell">
         <div class="login-container">
           <div class="login-header">
             <img src="${pageContext.request.contextPath}/resources/img/logo_unmsm.png">
-            <h2>Administración</h2>
+            <h2>Administracion de Pagos</h2>
           </div>
           <div class="login-body">
             <div class="clearfix sign">
@@ -71,8 +71,7 @@
                
                 <div class="form-group">
                   <div class="col-xs-12">
-                      <input type="submit" class="btn btn-send" id="btnIngresar"  
-                                          ></input>
+                      <input type="submit" class="btn btn-send" id="btnIngresar"></input>
                       
                     <!-- button type="submit" class="btn btn-primary">Regresar</button -->
                                       
@@ -84,11 +83,25 @@
       </div>
     </div>           
   </form>          
-            
+  <!-- FOOTER-->
+    <div class="copyrights" style="background-color: #2d2d2d; height: 100px; text-align: center; border-bottom: 2px solid #D6DBDF;">
+	<p style="color: white; font-weight: bold;">Facultad de Ingenieria de Sistemas e Informatica -UNMSM | Pasarela de Pagos <a href="http://sistemas.unmsm.edu.pe/" target="_blank">FISI</a> </p>
+	<div class="container" style="color: white ">
+        <div class="row">
+            	
+        </div>
+        </div>
+        <div class="footer-copyright">
+        <div class="container" style="color: white ">
+         © 2016 Copyright Text
+        </div>
+        </div>
+    </div>	      
    
       <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="${pageContext.request.contextPath}/resources/js/bootstrap.min.js"></script>
-    
+</body>
+</html>    
