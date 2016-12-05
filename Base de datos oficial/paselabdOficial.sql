@@ -25,6 +25,7 @@ DROP TABLE IF EXISTS `administrador`;
 CREATE TABLE `administrador` (
   `nombre` varchar(200) NOT NULL,
   `contrasenia` varchar(200) NOT NULL,
+  `contraseniaDeEdicion` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`nombre`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -35,33 +36,34 @@ CREATE TABLE `administrador` (
 
 LOCK TABLES `administrador` WRITE;
 /*!40000 ALTER TABLE `administrador` DISABLE KEYS */;
-INSERT INTO `administrador` VALUES ('economia','fisi');
+INSERT INTO `administrador` VALUES ('economia','fisi','economiaFisiAdmi');
 /*!40000 ALTER TABLE `administrador` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
--- Table structure for table `concepto_de_pago`
+-- Table structure for table `concepto`
 --
 
-DROP TABLE IF EXISTS `concepto_de_pago`;
+DROP TABLE IF EXISTS `concepto`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `concepto_de_pago` (
-  `ID_CONCEPTO` varchar(40) NOT NULL,
-  `DESCRIPCION` varchar(200) DEFAULT NULL,
-  `NUMERO_DE_CUENTA` varchar(10) DEFAULT NULL,
-  `MONTO` decimal(5,2) DEFAULT NULL,
-  PRIMARY KEY (`ID_CONCEPTO`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+CREATE TABLE `concepto` (
+  `ID_P` int(11) NOT NULL AUTO_INCREMENT,
+  `descripcion` varchar(200) DEFAULT NULL,
+  `id_concepto` varchar(10) DEFAULT NULL,
+  `monto` decimal(5,2) DEFAULT NULL,
+  PRIMARY KEY (`ID_P`)
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `concepto_de_pago`
+-- Dumping data for table `concepto`
 --
 
-LOCK TABLES `concepto_de_pago` WRITE;
-/*!40000 ALTER TABLE `concepto_de_pago` DISABLE KEYS */;
-/*!40000 ALTER TABLE `concepto_de_pago` ENABLE KEYS */;
+LOCK TABLES `concepto` WRITE;
+/*!40000 ALTER TABLE `concepto` DISABLE KEYS */;
+INSERT INTO `concepto` VALUES (1,'Carnet','201-302',10.00),(2,'2da repitencia','201-224',12.50),(3,'3ra repitencia','201-331',25.00),(4,'laboratorio','201-324',35.00),(5,'Autoseguro','201-325',45.00),(6,'4ta repitencia','201-326',55.00),(7,'5ta repitencia','201-327',65.00),(8,'6ta repitencia','201-309',70.00);
+/*!40000 ALTER TABLE `concepto` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -74,13 +76,13 @@ DROP TABLE IF EXISTS `historial_de_transaccion`;
 CREATE TABLE `historial_de_transaccion` (
   `ID_HISTORIAL` int(11) NOT NULL,
   `FECHA_TRANSACCION` date DEFAULT NULL,
-  `HORA_TRANSACCION` timestamp NULL DEFAULT NULL,
+  `HORA_TRANSACCION` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `SEMESTRE` varchar(10) DEFAULT NULL,
-  `codigo` varchar(40) NOT NULL,
-  `ID_CONCEPTO` varchar(40) NOT NULL,
+  `ID_USUARIO` int(11) NOT NULL,
+  `ID_CONCEPTO` int(11) NOT NULL,
   PRIMARY KEY (`ID_HISTORIAL`),
-  KEY `codigo_idx` (`codigo`),
-  CONSTRAINT `codigo` FOREIGN KEY (`codigo`) REFERENCES `usuarios` (`codigo`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  KEY `HISTORIAL_DE_TRANSACCION_TRANSACCION_FK` (`ID_USUARIO`,`ID_CONCEPTO`),
+  CONSTRAINT `HISTORIAL_DE_TRANSACCION_TRANSACCION_FK` FOREIGN KEY (`ID_USUARIO`, `ID_CONCEPTO`) REFERENCES `transaccion` (`ID`, `ID_P`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -90,7 +92,6 @@ CREATE TABLE `historial_de_transaccion` (
 
 LOCK TABLES `historial_de_transaccion` WRITE;
 /*!40000 ALTER TABLE `historial_de_transaccion` DISABLE KEYS */;
-INSERT INTO `historial_de_transaccion` VALUES (1,NULL,NULL,'6','13200240','210-1320'),(2,NULL,NULL,'6','13200240','210-9852'),(3,NULL,NULL,'7','13200237','210-9874');
 /*!40000 ALTER TABLE `historial_de_transaccion` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -126,12 +127,11 @@ DROP TABLE IF EXISTS `tipo_rol`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `tipo_rol` (
-  `codigo` varchar(40) NOT NULL,
+  `ID` int(11) NOT NULL,
   `ID_ROL` int(11) NOT NULL,
-  PRIMARY KEY (`codigo`,`ID_ROL`),
+  PRIMARY KEY (`ID`,`ID_ROL`),
   KEY `TIPO_ROL_ROL_FK` (`ID_ROL`),
-  CONSTRAINT `TIPO_ROL_ROL_FK` FOREIGN KEY (`ID_ROL`) REFERENCES `rol` (`ID_ROL`),
-  CONSTRAINT `TIPO_ROL_USUARIO_FK` FOREIGN KEY (`codigo`) REFERENCES `usuarios` (`codigo`)
+  CONSTRAINT `TIPO_ROL_ROL_FK` FOREIGN KEY (`ID_ROL`) REFERENCES `rol` (`ID_ROL`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -152,15 +152,13 @@ DROP TABLE IF EXISTS `transaccion`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `transaccion` (
-  `ID_TRANSACCION` varchar(40) NOT NULL,
-  `codigo` varchar(40) NOT NULL,
-  `ID_CONCEPTO` varchar(40) NOT NULL,
+  `ID` int(11) NOT NULL,
+  `ID_P` int(11) NOT NULL,
   `MONTO_TOTAL` decimal(5,2) DEFAULT NULL,
-  PRIMARY KEY (`ID_TRANSACCION`),
-  KEY `TRANSACCION_USUARIO_FK` (`codigo`),
-  KEY `TRANSACCION_CONCEPTO_DE_PAGO_FK` (`ID_CONCEPTO`),
-  CONSTRAINT `TRANSACCION_CONCEPTO_DE_PAGO_FK` FOREIGN KEY (`ID_CONCEPTO`) REFERENCES `concepto_de_pago` (`ID_CONCEPTO`),
-  CONSTRAINT `TRANSACCION_USUARIO_FK` FOREIGN KEY (`codigo`) REFERENCES `usuarios` (`codigo`)
+  PRIMARY KEY (`ID`,`ID_P`),
+  KEY `TRANSACCION_CONCEPTO_DE_PAGO_FK` (`ID_P`),
+  CONSTRAINT `TRANSACCION_CONCEPTO_DE_PAGO_FK` FOREIGN KEY (`ID_P`) REFERENCES `concepto` (`ID_P`),
+  CONSTRAINT `TRANSACCION_USUARIO_FK` FOREIGN KEY (`ID`) REFERENCES `usuario` (`ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -174,29 +172,30 @@ LOCK TABLES `transaccion` WRITE;
 UNLOCK TABLES;
 
 --
--- Table structure for table `usuarios`
+-- Table structure for table `usuario`
 --
 
-DROP TABLE IF EXISTS `usuarios`;
+DROP TABLE IF EXISTS `usuario`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `usuarios` (
-  `codigo` varchar(40) NOT NULL,
-  `NOMBRE` varchar(50) DEFAULT NULL,
-  `CORREO` varchar(50) DEFAULT NULL,
-  `ESCUELA` varchar(30) DEFAULT NULL,
-  PRIMARY KEY (`codigo`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+CREATE TABLE `usuario` (
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
+  `CODE` varchar(8) DEFAULT NULL,
+  `NAME` varchar(50) DEFAULT NULL,
+  `EMAIL` varchar(50) DEFAULT NULL,
+  `EAP` varchar(30) DEFAULT NULL,
+  PRIMARY KEY (`ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `usuarios`
+-- Dumping data for table `usuario`
 --
 
-LOCK TABLES `usuarios` WRITE;
-/*!40000 ALTER TABLE `usuarios` DISABLE KEYS */;
-INSERT INTO `usuarios` VALUES ('07200126','ROQUER','',''),('13200237','keevin','kevin@gmail.com','sistemas'),('13200240','deave','george@gmail.com','sistemas');
-/*!40000 ALTER TABLE `usuarios` ENABLE KEYS */;
+LOCK TABLES `usuario` WRITE;
+/*!40000 ALTER TABLE `usuario` DISABLE KEYS */;
+INSERT INTO `usuario` VALUES (1,'12345678','Kevin Yzacupe','mail1@unmsm.com','Software'),(2,'12345601','Ronald Santos','mail12@unmsm.com','Software'),(3,'12345602','Miguel Silva','mail13@unmsm.com','Software'),(4,'12345603','Eugenia Perez','mail4@unmsm.com','Software'),(5,'12345604','Magaly Balta','mail15@unmsm.com','Software'),(6,'12345605','Deave Torres','mail16@unmsm.com','Software'),(7,'12345606','Christiam Mendives','mail17@unmsm.com','Software'),(8,'12345607','Fernando Supo','mail18@unmsm.com','Software'),(9,'12345608','Jose Zea','mail19@unmsm.com','Software'),(10,'13200060','Christiam Mendives','mendives@unmsm.com','Software');
+/*!40000 ALTER TABLE `usuario` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -208,4 +207,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-12-02 12:27:42
+-- Dump completed on 2016-12-03  9:29:32

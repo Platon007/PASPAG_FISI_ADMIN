@@ -28,7 +28,11 @@
                 <prop key="delete.htm">deleteController</prop>
                 <prop key="Excel.htm">homeController</prop>                       
                 <prop key="login.htm">homeController</prop>
-                       
+                <prop key="nuevoPerfil.htm">newPerfilController</prop>
+                <prop key="buscarAlumno.htm">buscarAlumnoController</prop>
+                <prop key="buscar.htm">buscarAlumnoController</prop>
+                <prop key="privilegios.htm">homeController</prop>
+                                 
             </props>
         </property>
     </bean>
@@ -45,6 +49,9 @@
     <bean name="addController" class="pe.edu.sistemas.controller.addController" />
     <bean name="editController" class="pe.edu.sistemas.controller.EditController" />
     <bean name="deleteController" class="pe.edu.sistemas.controller.DeleteController" />
+    <bean name="newPerfilController" class="pe.edu.sistemas.controller.newPerfilController" />
+    <bean name="buscarAlumnoController" class="pe.edu.sistemas.controller.BuscarAlumnoController" />
+    
     <bean name="indexController"
           class="org.springframework.web.servlet.mvc.ParameterizableViewController"
           p:viewName="index" />

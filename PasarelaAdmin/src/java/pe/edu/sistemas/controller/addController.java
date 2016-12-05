@@ -13,7 +13,7 @@ import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
-@RequestMapping("/add.htm")
+@RequestMapping("add.htm")
 public class addController {
     UsuariosValidar usuariosValidar;
     private JdbcTemplate jdbcTemplate;
@@ -29,13 +29,13 @@ public class addController {
     {
         ModelAndView mav=new ModelAndView();
         mav.setViewName("add/add");
-        mav.addObject("usuarios",new Usuarios());
+        mav.addObject("usuario",new Usuarios());
         return mav;
     }
     @RequestMapping(method=RequestMethod.POST)
     public ModelAndView form
         (
-                @ModelAttribute("usuarios") Usuarios u,
+                @ModelAttribute("usuario") Usuarios u,
                 BindingResult result,
                 SessionStatus status
         )
@@ -45,22 +45,22 @@ public class addController {
         {
             ModelAndView mav=new ModelAndView();
             mav.setViewName("add/add");
-            mav.addObject("usuarios",new Usuarios());
+            mav.addObject("usuario",new Usuarios());
             return mav;
         }else
         {
         this.jdbcTemplate.update
         (
-        "insert into usuarios (nombre,codigo,correo,escuela ) values (?,?,?,?)",
+        "insert into usuario (name,code,email,eap ) values (?,?,?,?)",
         u.getNombre(),u.getCodigo(),u.getCorreo(),u.getEscuela()
         );
-         return new ModelAndView("redirect:add/add.htm");
+         return new ModelAndView("redirect:cargarData.htm");
         }   
     }
     public void carga(Usuarios g){
         Usuarios u = new Usuarios();
         this.jdbcTemplate.update(
-        "insert into usuarios (nombre,codigo,correo,escuela ) values (?,?,?,?)",
+        "insert into usuario (name,code,email,eap ) values (?,?,?,?,?)",
         u.getNombre(),u.getCodigo(),u.getCorreo(),u.getEscuela());
     }
 }

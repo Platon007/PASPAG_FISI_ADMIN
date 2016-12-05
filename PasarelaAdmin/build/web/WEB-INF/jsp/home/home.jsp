@@ -72,7 +72,12 @@
                 <div class="form-group">
                   <div class="col-xs-12">
                       <input type="submit" class="btn btn-send" id="btnIngresar"></input>
-                      
+            
+                      <c:forEach items="${m}" var="mensaje">
+                          
+                          <center><label  class="control-label"><c:out value="${m}"/></label></center>            
+                      </c:forEach>
+                              
                     <!-- button type="submit" class="btn btn-primary">Regresar</button -->
                                       
                   </div>

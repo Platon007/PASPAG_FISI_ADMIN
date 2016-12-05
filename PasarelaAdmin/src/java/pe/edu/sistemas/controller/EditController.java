@@ -32,20 +32,22 @@ public class EditController
         conectar con=new conectar();
         this.jdbcTemplate=new JdbcTemplate(con.conectar() );
     }
+    
     @RequestMapping(method=RequestMethod.GET) 
     public ModelAndView form(HttpServletRequest request)
     {
         ModelAndView mav=new ModelAndView();
-        int id=Integer.parseInt(request.getParameter("id"));
+        String id=request.getParameter("id");
+        System.out.println(""+id);
         Usuarios datos=this.selectUsuario(id);
         mav.setViewName("edit/edit");
-        mav.addObject("usuarios",new Usuarios(datos.getId_usuario(),datos.getNombre(),datos.getCodigo(),datos.getCorreo(),datos.getEscuela()));
+        mav.addObject("usuario",new Usuarios(datos.getNombre(),datos.getCodigo(),datos.getCorreo(),datos.getEscuela()));
         return mav;
     }
     @RequestMapping(method=RequestMethod.POST)
     public ModelAndView form
         (
-                @ModelAttribute("usuarios") Usuarios u,
+                @ModelAttribute("usuario") Usuarios u,
                 BindingResult result,
                 SessionStatus status,
                 HttpServletRequest request
@@ -55,35 +57,38 @@ public class EditController
         if(result.hasErrors())
         {
              ModelAndView mav=new ModelAndView();
-            int id=Integer.parseInt(request.getParameter("id"));
+            String id=request.getParameter("id");
+        System.out.println(""+id);
+       
             Usuarios datos=this.selectUsuario(id);
             mav.setViewName("edit/edit");
-            mav.addObject("usuarios",new Usuarios(datos.getId_usuario(),datos.getNombre(),datos.getCodigo(),datos.getCorreo(),datos.getEscuela()));
+            mav.addObject("usuario",new Usuarios(datos.getNombre(),datos.getCodigo(),datos.getCorreo(),datos.getEscuela()));
             return mav;
-        }else
+        }
+        else
         {
-            int id=Integer.parseInt(request.getParameter("id"));
-        this.jdbcTemplate.update("update usuarios set nombre=?, codigo=?, correo=?, escuela=? where id_usuarios=?",
-         u.getNombre(),u.getCodigo(),u.getCorreo(),u.getEscuela(),id);
+        int id=Integer.parseInt(request.getParameter("id"));
+        this.jdbcTemplate.update("update usuario set name=?, email=?, eap=? where code=?",
+         u.getNombre(),u.getCorreo(),u.getEscuela(),id);
          return new ModelAndView("redirect:/cargarData.htm");
         }
-        
     }
-    public Usuarios selectUsuario(int id) 
+        
+    public Usuarios selectUsuario(String id) 
     {
         final Usuarios user = new Usuarios();
-        String quer = "SELECT * FROM usuarios WHERE id_usuarios='" + id+"'";
+        String quer = "SELECT * FROM usuario WHERE code='" + id+"'";
         return (Usuarios) jdbcTemplate.query
         (  
                 quer, new ResultSetExtractor<Usuarios>() 
             {
                 public Usuarios extractData(ResultSet rs) throws SQLException, DataAccessException {
                     if (rs.next()) {
-                        user.setNombre(rs.getString("nombre"));
-                        user.setCodigo(rs.getString("codigo"));
-                        user.setCorreo(rs.getString("correo"));
-                        user.setEscuela(rs.getString("escuela"));
-                    }
+                        user.setNombre(rs.getString("name"));
+                        user.setCodigo(rs.getString("code"));
+                        user.setCorreo(rs.getString("email"));
+                        user.setEscuela(rs.getString("eap"));
+                    }            
                     return user;
                 }
 

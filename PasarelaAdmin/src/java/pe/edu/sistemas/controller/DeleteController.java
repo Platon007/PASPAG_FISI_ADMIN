@@ -19,11 +19,11 @@ public class DeleteController {
     @RequestMapping("delete.htm")
     public ModelAndView home(HttpServletRequest request) 
     {
-        int id=Integer.parseInt(request.getParameter("id"));
+        String id=request.getParameter("id");
         this.jdbcTemplate.update(
-                    "delete from usuarios "
+                    "delete from usuario "
                 + "where "
-                + "id_usuarios=? ",
+                + "code=? ",
         id);
         return new ModelAndView("redirect:/cargarData.htm");
     }

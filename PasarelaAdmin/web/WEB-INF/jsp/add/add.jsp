@@ -20,21 +20,57 @@
         <div class="header" style="height: 150px; width: 100%; background:#61859F; text-align: center; border-bottom: 2px solid #D6DBDF;">
             <img style="height:100%;" src="${pageContext.request.contextPath}/resources/img/fisi-unmsm.bmp"/>
         </div>
-    </header>    
-       <section class="container">
-      <div class="article">
-            <ol class="breadcrumb">
-                <li><a href="<c:url value="cargarData.htm" />">Regresar</a></li>
-                <li class="active">Agregar</li>
-            </ol>
-                <div class="panel-heading" style="background: #DBA901">Unidad de economia</div>
+    </header>  
+    <section class="section-inx">
+    <div>
+      <div class="aside">
+        <ul class="nav nav_aside">
+          <li>
+            <a href="http://sistemas.unmsm.edu.pe/">
+              <div class="barra"></div>
+              <p class="menu">Regresar a pagina principal</p>
+            </a>
+          </li>
+          <li>
+            <a class="active" href="#">
+              <div class="barra"></div>
+              <p class="menu">Cargar Data</p>
+            </a>
+          </li>
+          <li>
+            <a href="mostrarData.htm">
+              <div class="barra"></div>
+              <p class="menu">Verificar Alumnos</p>
+            </a>
+          </li>
+          <li>
+            <a href="buscarAlumno.htm">
+              <div class="barra"></div>
+              <p class="menu">Buscar Alumno</p>
+            </a>
+          </li>
+          <li>
+            <a href="nuevoPerfil.htm">
+              <div class="barra"></div>
+              <p class="menu">Nuevo Perfil</p>
+            </a>
+          </li>
+          <li>
+            <a href="home.htm">
+              <div class="barra"></div>
+              <p class="menu">Salir</p>
+            </a>
+          </li>
+        </ul>
+      </div>
+      <div class="article" style="padding: 20px;">
+                <div class="panel-heading" style="background: #5F7D9A; padding-top: 10px; border-radius: 6px;">Modulo: Agregar unevo almuno</div>
                 <div class="panel-body">
                    
-                        <form:form method="post" commandName="usuarios">
-                            <h1>Actualice los campos faltantes</h1>
+                        <form:form method="post" commandName="usuario">
                             
                             <form:errors path="*" element="div" cssClass="alert alert-danger" />
-                            
+                           
                             <p>
                                 <form:label path="nombre">Nombre:</form:label>
                                 <form:input path="nombre" cssClass="form-control" />
@@ -63,7 +99,9 @@
             <br/>
             <br/>
             <br/>
+    </div>
     </section>
+        
     <!-- FOOTER-->
     <div class="copyrights" style=" padding: 80px; background-color: #2d2d2d; height: 100px; text-align: center; border-bottom: 2px solid #D6DBDF;">
 	<p style="color: white; font-weight: bold;">Facultad de Ingenieria de Sistemas e Informatica -UNMSM | Pasarela de Pagos <a href="http://sistemas.unmsm.edu.pe/" target="_blank">FISI</a> </p>

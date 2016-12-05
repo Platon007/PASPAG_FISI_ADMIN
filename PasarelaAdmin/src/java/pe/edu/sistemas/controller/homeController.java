@@ -18,14 +18,36 @@ public class homeController
         conectar con = new conectar();
         this.jdbcTemplate = new JdbcTemplate(con.conectar());
     }
-     @RequestMapping("/home.htm")
+  
+    
+    @RequestMapping("privilegios.htm")
+  public ModelAndView privilegios(HttpServletRequest request,HttpServletResponse res) {
+        ModelAndView mav = new ModelAndView();
+        String name =  request.getParameter("AdministradorBuscar"); 
+        System.out.println(""+name);
+        String sql1 = "select nombre from administrador where contraseniaDeEdicion = '"+name+" ' ";
+        List datosNom = this.jdbcTemplate.queryForList(sql1); 
+       if(datosNom==null){
+        mav.addObject("datos","false");
+        mav.setViewName("nuevoPerfil/nuevoPerfil");
+        return mav;
+       }
+       else{
+        mav.addObject("datos","true");
+        
+           mav.setViewName("nuevoPerfil/nuevoPerfil");
+        return mav;
+       }
+    }
+  
+     @RequestMapping("home.htm")
     public ModelAndView home() {
         
 //        ModelAndView mav = new ModelAndView();
 //        mav.setViewName("home/home");
 //        return mav;
-          String sql1 = "select NOMBRE from administrador";
-          String sql2 = "select PASSWORD from administrador";
+          String sql1 = "select nombre from administrador";
+          String sql2 = "select contrasenia from administrador";
           List datosNom = this.jdbcTemplate.queryForList(sql1);
           List datosPass = this.jdbcTemplate.queryForList(sql2);
           System.out.println("------------------------------------ ");
@@ -36,17 +58,17 @@ public class homeController
           System.out.println(datosNom.get(0));
           System.out.println(datosPass.get(0));
           
-          return new ModelAndView("home/home", "m", ""); 
-          
+               return new ModelAndView("home/home", "m", "Ingrese datos");         
+     
           
     }
     
-    @RequestMapping("/login.htm")
+    @RequestMapping("login.htm")
     public ModelAndView login(HttpServletRequest request,HttpServletResponse res) {
         
         ModelAndView mav = new ModelAndView();
-          String sql1 = "select NOMBRE from administrador";
-          String sql2 = "select PASSWORD from administrador";
+          String sql1 = "select nombre from administrador";
+          String sql2 = "select contrasenia from administrador";
           List datosNom = this.jdbcTemplate.queryForList(sql1);
           List datosPass = this.jdbcTemplate.queryForList(sql2);
           
@@ -56,30 +78,33 @@ public class homeController
           
           //name2.equals(name) && pass2.equals(password)
           System.out.println(name + "------" + password);
-          String name2 = "{NOMBRE="+name+"}";
-          String pass2="{PASSWORD="+password+"}";
-          
-          if (name2.equals(datosNom.get(0).toString()) && pass2.equals(datosPass.get(0).toString())) {
-              
-                String Message = "Login Exitoso";
-        
-        String sql = "select * from usuarios";
-        List datos = this.jdbcTemplate.queryForList(sql);
-        mav.addObject("datos",datos);
-        mav.setViewName("cargarData/cargarData");
-        return mav;
-        } else {
-              
-            String Message = "Login fallido";
+          String name2 = "{nombre="+name+"}";
+          String pass2="{contrasenia="+password+"}";
+            if (name2.equals(datosNom.get(0).toString()) && pass2.equals(datosPass.get(0).toString()) ) {
+                  String Message = "Login Exitoso";
+          String sql = "select * from usuario";
+          List datos = this.jdbcTemplate.queryForList(sql);
+          mav.addObject("datos",datos);
+          mav.setViewName("mostrarData/mostrarData");
+          return mav;
+          } else if (name2.equals(datosNom.get(1).toString()) && pass2.equals(datosPass.get(1).toString()) ) {
+                  String Message = "Login Exitoso";
+          String sql = "select * from usuario";
+          List datos = this.jdbcTemplate.queryForList(sql);
+          mav.addObject("datos",datos);
+          mav.setViewName("cargarData/cargarData");
+          return mav;
             
-            return new ModelAndView("home/home", "m", Message);
-            
-        }
-          
+            //String Message = "Usuario Incorrecto";
+            //return new ModelAndView("home/home", "m", Message);     
+        }else{
+            String Message = "Usuario Incorrecto";
+            return new ModelAndView("home/home", "m", Message);     
+          }
     }
    
     
-     @RequestMapping("/Excel.htm")
+     @RequestMapping("Excel.htm")
     public ModelAndView Excel() {      
         ModelAndView mav = new ModelAndView();
         String sql = "select * from usuario";
@@ -89,20 +114,20 @@ public class homeController
         return mav;
     }
    
-    @RequestMapping("/cargarData.htm")
+    @RequestMapping("cargarData.htm")
     public ModelAndView cagarData() {        
         ModelAndView mav = new ModelAndView();
-        String sql = "select * from usuarios";
+        String sql = "select * from usuario";
         List datos = this.jdbcTemplate.queryForList(sql);
         mav.addObject("datos",datos);
         mav.setViewName("cargarData/cargarData");
         return mav;
     }
-    @RequestMapping("/mostrarData.htm")
+    @RequestMapping("mostrarData.htm")
     public ModelAndView mostrarData() {
         
         ModelAndView mav = new ModelAndView();
-        String sql = "select * from usuarios";
+        String sql = "select * from usuario";
         List datos = this.jdbcTemplate.queryForList(sql);
         mav.addObject("datos",datos);
         mav.setViewName("mostrarData/mostrarData");

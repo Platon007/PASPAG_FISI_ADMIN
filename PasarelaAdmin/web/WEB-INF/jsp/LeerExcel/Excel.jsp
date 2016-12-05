@@ -42,7 +42,7 @@
 try{
  InputStream excelStream = null;
 		 //ArrayList que servira para insertar los registros en la base de datos
-		File excelFile= new File("C:\\Users\\Josha\\Desktop\\Proyecto\\Proyecto\\RegistroFisi.xls");
+		File excelFile= new File("C:\\Users\\Josha\\Desktop\\Proyecto_v_4\\RegistroFisi.xls");
 		 //Lectura del archivo excel
 	        try {
 	            excelStream = new FileInputStream(excelFile);
@@ -70,7 +70,7 @@ try{
 	           
 	            // Para este ejemplo vamos a recorrer las filas obteniendo los datos que queremos   
 	            //Cambiar ese valor 2 por rows :D 
-	            for (int r = 1; r < 20; r++) {
+	            for (int r = 1; r < 2; r++) {
 	                hssfRow = hssfSheet.getRow(r);
 	                if (hssfRow == null){
 	                    break;
@@ -100,24 +100,21 @@ try{
                         	alumno.setCodigo(cellValue);
                         	break;
                             case 1:
-                            alumno.setCorreo("");
+                            alumno.setNombre(cellValue);
                         	
                         	break;
-                       case 2:
-                        	alumno.setId_usuario(r+200);
+                       
+                   
+                        case 2:
+                             alumno.setCorreo(cellValue);
+                                              
                         	
-                                break;
-                        
+                        	break;
                         case 3:
-                        	alumno.setNombre(cellValue);
-                        	
-                        	break;
-                        case 4:
-                        	alumno.setEscuela("");
+                        	alumno.setEscuela(cellValue);
                         	break;
                           }
-                        
-	                  }  String sqr="insert into usuarios (id_usuarios,nombre,codigo,correo,escuela) values ('"+alumno.getId_usuario()+"','"+alumno.getNombre()+"','"+alumno.getCodigo()+"','"+alumno.getCorreo()+"','"+alumno.getEscuela()+"')";
+	                  }  String sqr="insert into usuario (name,code,email,eap) values ('"+alumno.getNombre()+"','"+alumno.getCodigo()+"','"+alumno.getCorreo()+"','"+alumno.getEscuela()+"')";
                     sql.executeUpdate(sqr);
                     System.out.println("cargado con exito");
                         }
@@ -151,13 +148,13 @@ try{
       <div class="aside">
         <ul class="nav nav_aside">
           <li>
-            <a href="home.htm">
+            <a href="http://sistemas.unmsm.edu.pe/">
               <div class="barra"></div>
               <p class="menu">Regresar a pagina principal</p>
             </a>
           </li>
           <li>
-            <a class="active" href="cargarData.htm">
+            <a class="active" href="#">
               <div class="barra"></div>
               <p class="menu">Cargar Data</p>
             </a>
@@ -169,6 +166,18 @@ try{
             </a>
           </li>
           <li>
+            <a href="buscarAlumno.htm">
+              <div class="barra"></div>
+              <p class="menu">Buscar Alumno</p>
+            </a>
+          </li>
+          <li>
+            <a href="nuevoPerfil.htm">
+              <div class="barra"></div>
+              <p class="menu">Nuevo Perfil</p>
+            </a>
+          </li>
+          <li>
             <a href="home.htm">
               <div class="barra"></div>
               <p class="menu">Salir</p>
@@ -176,7 +185,6 @@ try{
           </li>
         </ul>
       </div>
-    </div>
     <div class="article">
         <center><h2>Usuarios Actualizados</h2></center>
         

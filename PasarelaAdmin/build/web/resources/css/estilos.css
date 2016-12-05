@@ -1,3 +1,12 @@
+h4, h5, h6,
+h1, h2, h3 {margin: 0;}
+ul, ol {margin: 0;}
+p {margin: 0;}
+html, body{
+  font-family: 'Work Sans', sans-serif;
+   font-size: 100%;
+   background:#F0F0F0; 
+}
 *{
 	margin: 0px;
 	padding: 0px;
@@ -15,7 +24,7 @@ footer{
 }
 .container-vertical{
 	background: #e3e3e3;
-	height: 250px;
+	height: 200px;
 	color: white;
 }
 .section-inx{
@@ -31,14 +40,15 @@ footer{
   position: absolute;
   left: 0px;
   top: 0;
-  width: 20%;
+  width: 18%;
   height: 500px;
+  border: solid 10px #F0F0F0;
 /*float: left;*/
-  background-color: #DBA901;
+  background-color: #CE9105;
   color: #ECF6CE;
 }
 .article{
-	width: 80%;
+	width: 82%;
 	height: 500px;
         padding-left: 10px;
 	float: right;
@@ -164,13 +174,15 @@ background-color: #1F618D;
 color: white;
 }
 #scroll1 {
-    overflow:scroll;
-    height:200px;
-    width:1000px;
+    overflow-y: scroll;
+    height:250px;
+    width:850px;
+    box-shadow: 0 0 25px #7E7E7E;
+    padding: 20px;
 }
 #scroll1 table {
-width:1000px;
-background-color:#F2F2F2;
+    width:800px;
+    
 }
 #bt_add {
 padding: 30px;
@@ -217,8 +229,61 @@ color: white;
     margin-top: -80px;
     margin-left: 340px;
     padding: 10px;
-    position: absolute;
-    
+    position: absolute;  
+}
+#colortab{
+    background-color: red;
+}
+#inmovil{
+
+}
+#encabezado{
+    width: 850px;
+    height: 20px;
+    padding-left: 5px;
+}
+#linea1{
+    height: 30px;
+    width: 165px;
+    background: #CE9105;
+    display: inline-block;
+    border: 0px;
+    padding: 0px;
+    margin: 0px;
+}
+#linea2{
+    height: 30px;
+    width: 165px;
+    background: #CE9105;
+    display: inline-block;
+    margin: 0px;
+    padding: 0px;
+}
+#linea3{
+    height: 30px;
+    width: 165px;
+    background: #CE9105;
+    display: inline-block;
+    margin: 0px;
+    padding: 0px;
+}
+#linea4{
+    height: 30px;
+    width: 165px;
+    background: #CE9105;
+    display: inline-block;
+    margin: 0px;
+    padding: 0px;
+    text-align: center;
+}
+#linea5{
+    height: 30px;
+    width: 165px;
+    background: #CE9105;    
+    display: inline-block;
+    margin: 0px;
+    padding: 0px;
+    text-align: center;
 }
 
 
