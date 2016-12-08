@@ -21,12 +21,6 @@
         <div>
           <div class="aside">
         <ul class="nav nav_aside">
-          <li>
-            <a href="http://sistemas.unmsm.edu.pe/">
-              <div class="barra"></div>
-              <p class="menu">Regresar a pagina principal</p>
-            </a>
-          </li>
           
           <li>
             <a href="#">
