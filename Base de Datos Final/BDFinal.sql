@@ -1,0 +1,123 @@
+use BDPasarela;
+
+CREATE TABLE USUARIO (
+	ID INT auto_increment,
+    CODE varchar(8),
+	NAME VARCHAR(50),
+	EMAIL VARCHAR(50),
+	EAP VARCHAR(30),
+	PRIMARY KEY (ID)
+);
+
+CREATE TABLE CONCEPTO (
+	ID_P INT auto_increment,
+	descripcion VARCHAR(200),
+	id_concepto VARCHAR(10),
+	monto NUMERIC(5 , 2),
+	PRIMARY KEY (ID_P)
+);
+
+
+
+CREATE TABLE TRANSACCION (
+	ID INT NOT NULL,
+	ID_P INT NOT NULL,
+	MONTO_TOTAL NUMERIC(5 , 2),
+	PRIMARY KEY (ID,ID_P)
+);
+
+CREATE TABLE ROL (
+	ID_ROL INT NOT NULL,
+	NOMBREROL VARCHAR(30),
+	TIPOROL VARCHAR(30),
+	PRIMARY KEY (ID_ROL)
+);
+
+
+CREATE TABLE HISTORIAL_DE_TRANSACCION (
+	ID_HISTORIAL INT NOT NULL,
+	FECHA_TRANSACCION DATE,
+	HORA_TRANSACCION TIMESTAMP,
+	SEMESTRE VARCHAR(10),
+	ID_USUARIO INT NOT NULL,
+	ID_CONCEPTO INT NOT NULL,
+	PRIMARY KEY (ID_HISTORIAL)
+);
+
+CREATE TABLE TIPO_ROL (
+	ID INT NOT NULL,
+	ID_ROL INT NOT NULL,
+	PRIMARY KEY (ID,ID_ROL)
+);
+
+
+CREATE TABLE `administrador` (
+  `nombre` varchar(200) NOT NULL,
+  `contrasenia` varchar(200) NOT NULL,
+  `contraseniaDeEdicion` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`nombre`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- APLICAMOS LAS LLAVES FORANEAS A TODAS LAS TABLAS 
+-- TABLA USUARIO
+
+-- TABLA TRANSACCION - USUARIO
+ALTER TABLE TRANSACCION ADD CONSTRAINT TRANSACCION_USUARIO_FK FOREIGN KEY (ID)
+	REFERENCES USUARIO (ID);
+
+-- TABLA TIPO_ROL - ROL
+ALTER TABLE TIPO_ROL ADD CONSTRAINT TIPO_ROL_ROL_FK FOREIGN KEY (ID_ROL)
+REFERENCES ROL (ID_ROL);
+
+-- TABLA HISTORIAL_TRANSACCION
+ALTER TABLE HISTORIAL_DE_TRANSACCION ADD CONSTRAINT HISTORIAL_DE_TRANSACCION_TRANSACCION_FK FOREIGN KEY (ID_USUARIO, ID_CONCEPTO)
+	REFERENCES TRANSACCION (ID, ID_P);
+    
+
+-- TABLA TIPO_ROL - USUARIO
+ALTER TABLE TIPO_ROL ADD CONSTRAINT TIPO_ROL_USUARIO_FK FOREIGN KEY (ID)
+	REFERENCES USUARIO (ID);
+
+-- TABLA TRANSACCION - CONCEPTO
+ALTER TABLE TRANSACCION ADD CONSTRAINT TRANSACCION_CONCEPTO_DE_PAGO_FK FOREIGN KEY (ID_P)
+REFERENCES CONCEPTO(ID_P);
+    
+
+-- REALIZAMOS LAS INSERCIONES A LAS TABLA USUARIO
+insert into USUARIO (CODE, NAME, EMAIL, EAP) values ('12345678', 'Kevin Yzacupe', 'mail1@unmsm.com', 'Software'  );
+insert into USUARIO (CODE, NAME, EMAIL, EAP) values ('12345601', 'Ronald Santos' , 'mail12@unmsm.com', 'Software');
+insert into USUARIO (CODE, NAME, EMAIL, EAP) values ('12345602', 'Miguel Silva', 'mail13@unmsm.com', 'Software');
+insert into USUARIO (CODE, NAME, EMAIL, EAP) values ('12345603', 'Eugenia Perez', 'mail4@unmsm.com', 'Software');
+insert into USUARIO (CODE, NAME, EMAIL, EAP) values ('12345604', 'Magaly Balta', 'mail15@unmsm.com', 'Software');
+insert into USUARIO (CODE, NAME, EMAIL, EAP) values ('12345605', 'Deave Torres', 'mail16@unmsm.com', 'Software');
+insert into USUARIO (CODE, NAME, EMAIL, EAP) values ('12345606', 'Christiam Mendives' , 'mail17@unmsm.com', 'Software');
+insert into USUARIO (CODE, NAME, EMAIL, EAP) values ('12345607', 'Fernando Supo' , 'mail18@unmsm.com', 'Software');
+insert into USUARIO (CODE, NAME, EMAIL, EAP) values ('12345608', 'Jose Zea', 'mail19@unmsm.com', 'Software');
+insert into USUARIO (CODE, NAME, EMAIL, EAP) values ('13200060', 'Christiam Mendives', 'mendives@unmsm.com', 'Software');
+
+-- REALIZAMOS LA INSERCIONES A LA TABLA CONCEPTO
+insert into CONCEPTO (id_concepto, descripcion, monto) values ('201-302', 'Carnet', '10');
+insert into CONCEPTO (id_concepto, descripcion, monto) values ('201-224', '2da repitencia', '12.5');
+insert into CONCEPTO (id_concepto, descripcion, monto) values ('201-331', '3ra repitencia', '25');
+insert into CONCEPTO (id_concepto, descripcion, monto) values ('201-324', 'laboratorio', '35');
+insert into CONCEPTO (id_concepto, descripcion, monto) values ('201-325', 'Autoseguro', '45');
+insert into CONCEPTO (id_concepto, descripcion, monto) values ('201-326', '4ta repitencia', '55');
+insert into CONCEPTO (id_concepto, descripcion, monto) values ('201-327', '5ta repitencia', '65');
+insert into CONCEPTO (id_concepto, descripcion, monto) values ('201-309', '6ta repitencia', '70');
+
+-- INSERCIONES DE DATA
+INSERT INTO transaccion (ID,ID_P) VALUES (1,4);
+INSERT INTO transaccion (ID,ID_P) VALUES (2,2);
+INSERT INTO transaccion (ID,ID_P) VALUES (3,5);
+INSERT INTO transaccion (ID,ID_P) VALUES (3,2);
+INSERT INTO transaccion (ID,ID_P) VALUES (1,5);
+
+INSERT INTO HISTORIAL_DE_TRANSACCION (ID_HISTORIAL,FECHA_TRANSACCION,SEMESTRE,ID_USUARIO,ID_CONCEPTO) VALUES (6,'2016-12-18','VIII',1,4);
+INSERT INTO HISTORIAL_DE_TRANSACCION (ID_HISTORIAL,FECHA_TRANSACCION,SEMESTRE,ID_USUARIO,ID_CONCEPTO) VALUES (1,'2016-12-18','VIII',2,2);
+INSERT INTO HISTORIAL_DE_TRANSACCION (ID_HISTORIAL,FECHA_TRANSACCION,SEMESTRE,ID_USUARIO,ID_CONCEPTO) VALUES (2,'2016-12-18','VIII',3,5);
+INSERT INTO HISTORIAL_DE_TRANSACCION (ID_HISTORIAL,FECHA_TRANSACCION,SEMESTRE,ID_USUARIO,ID_CONCEPTO) VALUES (3,'2016-12-18','VIII',3,2);
+INSERT INTO HISTORIAL_DE_TRANSACCION (ID_HISTORIAL,FECHA_TRANSACCION,SEMESTRE,ID_USUARIO,ID_CONCEPTO) VALUES (4,'2016-12-18','VIII',1,5);
+
+
+-- INSERCION AL PERFIL ADMINISTRADOR
+INSERT INTO `administrador` VALUES ('economia','fisi','economiaFisiAdmi');

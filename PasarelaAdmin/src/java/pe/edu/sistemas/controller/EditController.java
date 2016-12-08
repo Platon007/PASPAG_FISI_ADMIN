@@ -70,7 +70,7 @@ public class EditController
         int id=Integer.parseInt(request.getParameter("id"));
         this.jdbcTemplate.update("update usuario set name=?, email=?, eap=? where code=?",
          u.getNombre(),u.getCorreo(),u.getEscuela(),id);
-         return new ModelAndView("redirect:/cargarData.htm");
+         return new ModelAndView("redirect:/mostrarData.htm");
         }
     }
         

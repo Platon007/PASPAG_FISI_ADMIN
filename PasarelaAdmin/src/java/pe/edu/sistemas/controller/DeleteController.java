@@ -25,6 +25,6 @@ public class DeleteController {
                 + "where "
                 + "code=? ",
         id);
-        return new ModelAndView("redirect:/cargarData.htm");
+        return new ModelAndView("redirect:/mostrarData.htm");
     }
 }

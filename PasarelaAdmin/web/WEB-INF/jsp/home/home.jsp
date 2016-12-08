@@ -58,8 +58,8 @@
               
                 <div class="form-group">
                   <div class="col-xs-12">
-                    <label for="inputEmail1" class="control-label" >Código</label>
-                    <input name="name" type="text" class="form-control" id="inputEmail1" name="code" placeholder="Ejm: 0945685">
+                    <label for="inputEmail1" class="control-label" >Usuario</label>
+                    <input name="name" type="text" class="form-control" id="inputEmail1" name="code" placeholder="Ejm: economia">
                   </div>
                 </div>
                 <div class="form-group">

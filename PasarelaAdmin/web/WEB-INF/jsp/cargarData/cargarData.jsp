@@ -43,7 +43,7 @@
               <p class="menu">Buscar Alumno</p>
             </a>
           </li>
-         
+          
           <li>
             <a href="home.htm">
               <div class="barra"></div>
@@ -63,7 +63,7 @@
                             <th>Codigo</th>
                             <th>Correo</th>
                             <th>Escuela</th>
-                            <th>Edicion</th>
+                            
                         </tr>
                     </thead>
                     <tbody>
@@ -73,10 +73,10 @@
                                 <td><c:out value="${dato.code}" /></td>
                                 <td><c:out value="${dato.email}" /></td>
                                 <td><c:out value="${dato.eap}" /></td>
-                                <td>
+                                <!--<td>
                                     <a href="<c:url value="edit.htm?id=${dato.code}" />"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a>
                                     <a href="<c:url value="delete.htm?id=${dato.code}" />"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a>
-                                </td>
+                                </td>-->
                             </tr>
                         </c:forEach>
                     </tbody>
@@ -85,23 +85,25 @@
         <section>
           <br/>
           <br/>
-          <h4>Cargar data masiva</h4>
+         <!-- <h4>Cargar data masiva</h4>
           <form method="post" action="accion.php" enctype="multipart/form-data">
               <div class="row">
                 <div class="col-md-8">
                     <input name="imagen" type="file" />
+                </div>  -->
+                <div>
+                <h4>Seleccione sus Archivos</h4><br/>
+                <div class="col-md-6" style="float: left">
+                    <a href="http://127.0.0.1:8080/ModuloCargarData/index.php" type="button" class="btn btn-warning"/><span class="glyphicon glyphicon-folder-open" aria-hidden="true"></span>  Subir Archivos</a>
                 </div>
-                  <div class="col-md-4" style="float: right">
+                </div>
+                
+                <div class="col-md-4" style="float: right">
                       <a type="button" class="btn btn-default" style="background: #DBA901" href="Excel.htm"><span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>IMPORTAR</a> 
                 </div>
-              </div>            
-          </form>
-          <div>
-              <h4>Carga de data individual</h4>
-              <div>
-                  <a href="add.htm" type="button" class="btn btn-warning"/><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>Agregar</a>
-              </div>
-          </div>
+           <!--   </div>            
+          </form>   -->
+          
         </section>
       </div>
     </div>

@@ -40,9 +40,15 @@
           </li>
           
           <li>
-            <a href=#">
+            <a href="nuevoPerfil.htm">
               <div class="barra"></div>
-              <p class="menu">Nuevo Perfil</p>
+              <p class="menu">Nuevo SuperUsuario</p>
+            </a>
+          </li>
+          <li>
+            <a href="add.htm">
+              <div class="barra"></div>
+              <p class="menu">Nuevo Alumno</p>
             </a>
           </li>
           <li>
@@ -78,7 +84,7 @@
                                 
                             </p>
                             <br/>
-                            <input style=" background: #61859F"type="submit" value="Ingresar Perfil" class="btn btn-default "  />
+                            <input disabled="true" style=" background: #61859F"type="submit" value="Ingresar Perfil" class="btn btn-default "  />
                             <!--<a type="submit" value="Enviar" class="btn btn-default" style="background: #DBA901"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Enviar</a>-->
                         </form:form>
                 </div>

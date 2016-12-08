@@ -13,7 +13,7 @@ import="java.sql.Connection"
     Statement sql=null;
     try{
         Class.forName("com.mysql.jdbc.Driver");
-        conex=(Connection)DriverManager.getConnection("jdbc:mysql://localhost:3306/pasarelabd","root","1234");
+        conex=(Connection)DriverManager.getConnection("jdbc:mysql://localhost:3306/pasarelabd1","root","1234");
         sql=conex.createStatement();
        
     }catch(Exception e){

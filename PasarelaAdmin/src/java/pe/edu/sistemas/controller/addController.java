@@ -54,7 +54,7 @@ public class addController {
         "insert into usuario (name,code,email,eap ) values (?,?,?,?)",
         u.getNombre(),u.getCodigo(),u.getCorreo(),u.getEscuela()
         );
-         return new ModelAndView("redirect:cargarData.htm");
+         return new ModelAndView("redirect:mostrarData.htm");
         }   
     }
     public void carga(Usuarios g){

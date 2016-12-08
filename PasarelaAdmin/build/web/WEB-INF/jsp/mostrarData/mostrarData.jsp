@@ -38,7 +38,13 @@
           <li>
             <a href="nuevoPerfil.htm">
               <div class="barra"></div>
-              <p class="menu">Nuevo Perfil</p>
+              <p class="menu">Nuevo SuperUsuario</p>
+            </a>
+          </li>
+          <li>
+            <a href="add.htm">
+              <div class="barra"></div>
+              <p class="menu">Nuevo Alumno</p>
             </a>
           </li>
           <li>
@@ -82,7 +88,8 @@
         </div>
     </div> 
     </section>
-        <!-- FOOTER -->
+    <br/>
+    <!-- FOOTER -->
     <div class="copyrights" style="background-color: #2d2d2d; height: 100px; text-align: center; border-bottom: 2px solid #D6DBDF;">
 	<p style="color: white; font-weight: bold;">Facultad de Ingenieria de Sistemas e Informatica -UNMSM | Pasarela de Pagos <a href="http://sistemas.unmsm.edu.pe/" target="_blank">FISI</a> </p>
 	<div class="container" style="color: white ">

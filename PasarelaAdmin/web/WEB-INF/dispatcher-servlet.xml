@@ -10,6 +10,8 @@
        http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.0.xsd">
 
     <bean class="org.springframework.web.servlet.mvc.support.ControllerClassNameHandlerMapping"/>
+    
+    
 
     <!--
     Most controllers will use the ControllerClassNameHandlerMapping above, but
@@ -32,7 +34,9 @@
                 <prop key="buscarAlumno.htm">buscarAlumnoController</prop>
                 <prop key="buscar.htm">buscarAlumnoController</prop>
                 <prop key="privilegios.htm">homeController</prop>
-                                 
+                <prop key="alumno.htm">homeController</prop>
+                <prop key="uploadform.htm">homeController</prop>
+                
             </props>
         </property>
     </bean>
@@ -51,6 +55,9 @@
     <bean name="deleteController" class="pe.edu.sistemas.controller.DeleteController" />
     <bean name="newPerfilController" class="pe.edu.sistemas.controller.newPerfilController" />
     <bean name="buscarAlumnoController" class="pe.edu.sistemas.controller.BuscarAlumnoController" />
+    
+    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver"/>
+
     
     <bean name="indexController"
           class="org.springframework.web.servlet.mvc.ParameterizableViewController"

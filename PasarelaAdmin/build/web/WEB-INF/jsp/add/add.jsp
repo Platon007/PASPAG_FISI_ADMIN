@@ -31,28 +31,24 @@
               <p class="menu">Regresar a pagina principal</p>
             </a>
           </li>
-          <li>
-            <a class="active" href="#">
-              <div class="barra"></div>
-              <p class="menu">Cargar Data</p>
-            </a>
-          </li>
+          
           <li>
             <a href="mostrarData.htm">
               <div class="barra"></div>
               <p class="menu">Verificar Alumnos</p>
             </a>
           </li>
-          <li>
-            <a href="buscarAlumno.htm">
-              <div class="barra"></div>
-              <p class="menu">Buscar Alumno</p>
-            </a>
-          </li>
+          
           <li>
             <a href="nuevoPerfil.htm">
               <div class="barra"></div>
-              <p class="menu">Nuevo Perfil</p>
+              <p class="menu">Nuevo SuperUsuario</p>
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              <div class="barra"></div>
+              <p class="menu">Nuevo Alumno</p>
             </a>
           </li>
           <li>
@@ -63,8 +59,8 @@
           </li>
         </ul>
       </div>
-      <div class="article" style="padding: 20px;">
-                <div class="panel-heading" style="background: #5F7D9A; padding-top: 10px; border-radius: 6px;">Modulo: Agregar unevo almuno</div>
+      <div class="article" style="padding: 20px 200px 200px 150px;">
+                <div class="panel-heading" style="color: white; background: #CE9105; padding-top: 10px; border-radius: 6px;">Modulo Administrador >> Creacion de un nuevo perfil</div>
                 <div class="panel-body">
                    
                         <form:form method="post" commandName="usuario">
@@ -91,7 +87,8 @@
                                 <form:label path="escuela">Escuela</form:label>
                                 <form:input path="escuela" cssClass="form-control" />
                             </p>
-                            <input type="submit" value="Enviar" class="btn btn-danger" />
+                            <br/>
+                            <input style=" background: #61859F" type="submit" value="Enviar" class="btn btn-default" />
                             <!--<a type="submit" value="Enviar" class="btn btn-default" style="background: #DBA901"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Enviar</a>-->
                         </form:form>
                 </div>

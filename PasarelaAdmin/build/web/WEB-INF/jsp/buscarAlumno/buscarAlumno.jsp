@@ -63,7 +63,7 @@
                     <input path="nombre" cssClass="form-control" name="AlumnoBuscar" />
                 </div>
                   <div class="col-md-8">
-                <input type="submit" class="btn btn-send" id="btnIngresar" style="background: #DBA901" ></input>
+                <input value="Buscar por Codigo" type="submit" class="btn btn-send" id="btnIngresar" style="background: #CE9105; color: white" ></input>
                   </div>
               </div>  
              <br/>
@@ -91,10 +91,10 @@
                                 <td><c:out value="${dato.eap}" /></td>
                                 <td><c:out value="${dato.ID_CONCEPTO}" /></td>
                                 
-                                <td>
+                                <!--<td>
                                     <a href="<c:url value="edit.htm?id=${dato.code}" />"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a>
                                     <a href="<c:url value="delete.htm?id=${dato.code}" />"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a>
-                                </td>
+                                </td>-->
                             </tr>
                         </c:forEach>
                     </tbody>

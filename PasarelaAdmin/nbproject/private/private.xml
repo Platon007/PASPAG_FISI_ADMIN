@@ -2,6 +2,15 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group/>
+        <group>
+            <file>file:/C:/Users/Horus/Desktop/taller_pasarela_admin/Proyecto/PasarelaAdmin/web/WEB-INF/dispatcher-servlet.xml</file>
+            <file>file:/C:/Users/Horus/Desktop/taller_pasarela_admin/Proyecto/PasarelaAdmin/web/WEB-INF/jsp/uploadform/uploadform.jsp</file>
+            <file>file:/C:/Users/Horus/Desktop/taller_pasarela_admin/Proyecto/PasarelaAdmin/src/java/pe/edu/sistemas/controller/homeController.java</file>
+            <file>file:/C:/Users/Horus/Desktop/taller_pasarela_admin/Proyecto/PasarelaAdmin/src/java/pe/edu/sistemas/controller/addController.java</file>
+            <file>file:/C:/Users/Horus/Desktop/taller_pasarela_admin/Proyecto/PasarelaAdmin/web/WEB-INF/jsp/home/home.jsp</file>
+            <file>file:/C:/Users/Horus/Desktop/taller_pasarela_admin/Proyecto/PasarelaAdmin/web/WEB-INF/jsp/cargarData/cargarData.jsp</file>
+            <file>file:/C:/Users/Horus/Desktop/taller_pasarela_admin/Proyecto/PasarelaAdmin/src/java/pe/edu/sistemas/controller/BuscarAlumnoController.java</file>
+            <file>file:/C:/Users/Horus/Desktop/taller_pasarela_admin/Proyecto/PasarelaAdmin/web/WEB-INF/jsp/LeerExcel/Excel.jsp</file>
+        </group>
     </open-files>
 </project-private>
